@@ -12,4 +12,4 @@ if __name__ == "__main__":
 		os.system(f'echo "{time.ctime()} lux_value: {output}" >> lux_values.txt')
 		time.sleep(30)
 		
-
+# curl -L https://raw.githubusercontent.com/wnminch/verkada/master/historical_lux.py > /mnt/ramdisk/historical_lux.py
