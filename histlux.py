@@ -16,6 +16,7 @@ if __name__ == "__main__":
 		os.system('echo -e "' + time.ctime() + ' lux_value: ' + str(output) + '\n" >> /mnt/ramdisk/lux_values.txt')
 		# wait 30 minutes before next iteration 
 		# time.sleep(60*30)
+		time.sleep(5)
 		
 # curl -L https://raw.githubusercontent.com/wnminch/verkada/master/historical_lux.py > /mnt/ramdisk/historical_lux.py
 # python3 /mnt/ramdisk/historical_lux.py >> /dev/null 2>&1
