@@ -14,5 +14,5 @@ if __name__ == "__main__":
         time.sleep(60*30)
 		
 # curl -L https://raw.githubusercontent.com/wnminch/verkada/master/historical_lux.py > /mnt/ramdisk/historical_lux.py
-# python3 /mnt/ramdisk/historical_lux.py >> /dev/null 2>&1
+# python3 /mnt/ramdisk/historical_lux.py >> /dev/null 
 # cat /mnt/ramdisk/lux_values.txt
