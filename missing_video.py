@@ -79,9 +79,10 @@ if __name__ == "__main__":
     camera_id = sys.argv[1]
     # python3 missing_video.py 2c952af3-ea92-4ec9-b56c-bf88b9ef2406 william.minch@verkada.com
     command = 'find /mnt/ -iname "*.zip" | grep low_res'
+    url = 'https://vproxy.command.verkada.com/_proxy/remotesh/' + camera_id
 
     with requests.Session() as session:
-        x = session.post('https://vproxy.command.verkada.com/_proxy/remotesh/2c952af3-ea92-4ec9-b56c-bf88b9ef2406',
+        x = session.post(url,
                          json={'interpret': command},
                          headers={'X-Verkada-Auth': token})
         data = x.text
@@ -89,6 +90,3 @@ if __name__ == "__main__":
     zipfiles = dict_data["stdout"]
     zipfiles = zipfiles.split('\n')
     missing_files(zipfiles)
-
-
-
