@@ -11,7 +11,7 @@ if __name__ == "__main__":
     i = 0
 
     while i < 1008:
-        os.system("date |  tee -a /mnt/internal/mmcblk0p7/gwtest.txt ;ping -c4 -w10 192.168.1.1 |  tee -a /mnt/internal/mmcblk0p7/gwtest.txt")
+        os.system("date |  tee -a /mnt/internal/mmcblk0p7/gwtest.txt ;ping -c4 -w10 10.1.10.1 |  tee -a /mnt/internal/mmcblk0p7/gwtest.txt")
         os.system("date |  tee -a /mnt/internal/mmcblk0p7/pingtest.txt ;ping -c4 -w10 8.8.8.8 |  tee -a /mnt/internal/mmcblk0p7/pingtest.txt")
         os.system("date |  tee -a /mnt/internal/mmcblk0p7/dnstest.txt ;ping -c4 -w10 google.com |  tee -a /mnt/internal/mmcblk0p7/dnstest.txt")
 
