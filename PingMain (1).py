@@ -16,5 +16,5 @@ if __name__ == "__main__":
         os.system("date |  tee -a /mnt/internal/mmcblk0p7/dnstest.txt ;ping -c4 -w10 google.com |  tee -a /mnt/internal/mmcblk0p7/dnstest.txt")
 
         i += 1
-        time.sleep(60 * 2)
+        time.sleep(60 * 10)
 
