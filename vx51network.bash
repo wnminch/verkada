@@ -22,15 +22,15 @@ nslookup api.control.verkada.com 8.8.8.8  >> Users/verkada/`hostname`_network.tx
 printf "\ncurl verkada endpoints\n" >> Users/verkada/`hostname`_network.txt
 printf "curl --max-time 10 https://api.control.verkada.com/ping \n" >> Users/verkada/`hostname`_network.txt
 curl --max-time 10 https://api.control.verkada.com/ping 1>> Users/verkada/`hostname`_network.txt 2>&1
-printf "curl --max-time 10 -k https://13.248.156.50/ping \n" >> Users/verkada/`hostname`_network.txt
+printf "\ncurl --max-time 10 -k https://13.248.156.50/ping \n" >> Users/verkada/`hostname`_network.txt
 curl --max-time 10 -k https://13.248.156.50/ping  1>> Users/verkada/`hostname`_network.txt 2>&1
-printf "curl --max-time 10 -k https://76.223.30.163/ping \n" >> Users/verkada/`hostname`_network.txt
+printf "\ncurl --max-time 10 -k https://76.223.30.163/ping \n" >> Users/verkada/`hostname`_network.txt
 curl --max-time 10 -k https://76.223.30.163/ping  1>> Users/verkada/`hostname`_network.txt 2>&1
-printf "curl --max-time 10 https://relay.control.verkada.com/ping \n" >> Users/verkada/`hostname`_network.txt
+printf "\ncurl --max-time 10 https://relay.control.verkada.com/ping \n" >> Users/verkada/`hostname`_network.txt
 curl --max-time 10 https://relay.control.verkada.com/ping 1>> Users/verkada/`hostname`_network.txt 2>&1
-printf "curl --max-time 10 https://firmware.control.verkada.com/ping \n" >> Users/verkada/`hostname`_network.txt
+printf "\ncurl --max-time 10 https://firmware.control.verkada.com/ping \n" >> Users/verkada/`hostname`_network.txt
 curl --max-time 10 https://firmware.control.verkada.com/ping  1>> Users/verkada/`hostname`_network.txt 2>&1
-printf "curl --max-time 10 https://index.control.verkada.com/ping\n" >> Users/verkada/`hostname`_network.txt
+printf "\ncurl --max-time 10 https://index.control.verkada.com/ping\n" >> Users/verkada/`hostname`_network.txt
 curl --max-time 10 https://index.control.verkada.com/ping  1>> Users/verkada/`hostname`_network.txt 2>&1;
 sleep 300;
 done
