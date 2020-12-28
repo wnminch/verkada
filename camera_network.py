@@ -22,7 +22,7 @@ if __name__ == "__main__":
     while True:
         status = os.system(network_status)
         # status is non-zero if camera is offline
-        if status != 0:
+        if status == 0:
             # all commands
             os.system('printf "\n\n-------------------------------------------------------------\n" >> ' + path)
             os.system("date" + append)
@@ -30,14 +30,17 @@ if __name__ == "__main__":
             os.system("cat /tmp/network_status" + append)
             os.system('printf "\nifconfig\n"' + append)
             os.system("ifconfig" + append)
-            os.system('printf "\nPing and ARP of gateway\n"' + append)
+
+            os.system('printf "\nARP and ping of gateway\n"' + append)
+            os.system("route | grep default | awk '{print $2}' | xargs -I{} grep {} /proc/net/arp" + append)
             os.system("route | grep default | awk '{print $2}' | xargs -I{} ping -c 10 {}" + append)
             time.sleep(15)
-            os.system("route | grep default | awk '{print $2}' | xargs -I{} grep {} /proc/net/arp" + append)
-            os.system('printf "\nPing and ARP of DNS server\n"' + append)
+
+            os.system('printf "\nARP and ping of DNS server\n"' + append)
+            os.system("grep nameserver /etc/resolv.conf | tail -n 1 | awk '{print $2}' | xargs -I{} grep {} /proc/net/arp" + append)
             os.system("grep nameserver /etc/resolv.conf | tail -n 1 | awk '{print $2}' | xargs -I{} ping -c 5 {}" + append)
             time.sleep(15)
-            os.system("grep nameserver /etc/resolv.conf | tail -n 1 | awk '{print $2}' | xargs -I{} grep {} /proc/net/arp" + append)
+
             os.system('printf "\nPing google\n"' + append)
             os.system("ping -c 10 8.8.8.8" + append)
             time.sleep(15)
