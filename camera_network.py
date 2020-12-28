@@ -17,58 +17,60 @@ if __name__ == "__main__":
         # status is non-zero if camera is offline
         if True: #status != 0:
             # all commands
-            os.system('printf "\n\n=============================================================" >> ' + path)
+            os.system('printf "\n\n-------------------------------------------------------------\n" >> ' + path)
             os.system("date" + append)
+            os.system('printf "network status: "' + append)
             os.system("cat /tmp/network_status" + append)
+            os.system('printf "\nifconfig\n"' + append)
             os.system("ifconfig" + append)
-            os.system('printf "ping gateway"' + append)
+            os.system('printf "\nPing and ARP of gateway\n"' + append)
             os.system("route | grep default | awk '{print $2}' | xargs -I{} ping -c 10 {}" + append)
+            time.sleep(15)
             os.system("route | grep default | awk '{print $2}' | xargs -I{} grep {} /proc/net/arp" + append)
+            os.system('printf "\nPing and ARP of DNS server\n"' + append)
             os.system("grep nameserver /etc/resolv.conf | tail -n 1 | awk '{print $2}' | xargs -I{} ping -c 5 {}" + append)
+            time.sleep(15)
             os.system("grep nameserver /etc/resolv.conf | tail -n 1 | awk '{print $2}' | xargs -I{} grep {} /proc/net/arp" + append)
+            os.system('printf "\nPing google\n"' + append)
             os.system("ping -c 10 8.8.8.8" + append)
+            time.sleep(15)
+            os.system('printf "\nTraceroute google and api.control.verkada.com\n"' + append)
             os.system("traceroute -q 3 -n -m 10 8.8.8.8" + append)
+            time.sleep(15)
             os.system("traceroute -q 3 -n -m 10 api.control.verkada.com" + append)
+            time.sleep(15)
+
             # curl tests
+            os.system('printf "\nCurl api, relay, index, firmware, and update endpoints\n"' + append)
             os.system("curl --max-time 10 https://api.control.verkada.com/ping" + append)
+            time.sleep(15)
             os.system("curl --max-time 10 https://relay.control.verkada.com/ping" + append)
+            time.sleep(15)
             os.system("curl --max-time 10 https://index.control.verkada.com/ping" + append)
+            time.sleep(15)
             os.system("curl --max-time 10 https://firmware.control.verkada.com/ping" + append)
+            time.sleep(15)
             os.system("curl --max-time 10 https://update.control.verkada.com/ping" + append)
+            time.sleep(15)
+            os.system('printf "\nVerbose curl of API endpoint\n"' + append)
             os.system("curl --max-time 10 -vvv https://api.control.verkada.com/ping" + append)
+            time.sleep(15)
 
             # DNS
+            os.system('printf "\nResolv.conf file\n"' + append)
             os.system("grep nameserver /etc/resolv.conf" + append)
+            os.system('printf "\nnslookup for api, relay, index, firmware, and update endpoints\n"' + append)
             os.system("nslookup api.control.verkada.com" + append)
             os.system("nslookup relay.control.verkada.com" + append)
             os.system("nslookup index.control.verkada.com" + append)
             os.system("nslookup firmware.control.verkada.com" + append)
             os.system("nslookup update.control.verkada.com" + append)
+            os.system('printf "\nnslookup for api endpoint using google\'s DNS server\n"' + append)
             os.system("nslookup api.control.verkada.com 8.8.8.8")
 
+            os.system('printf "\nNTP check\n"' + append)
             os.system("ntpq -p" + append)
 
-            os.system('printf "\n\n=============================================================" >> ' + path)
+            os.system('printf "\n\n-------------------------------------------------------------\n" >> ' + path)
 
         time.sleep(60*10)
-
-
-
-
-
-
-    """
-    
-    os.system('touch /mnt/internal/mmcblk0p7/gwtest.txt')
-    os.system('touch /mnt/internal/mmcblk0p7/pingtest.txt')
-    os.system('touch /mnt/internal/mmcblk0p7/dnstest.txt')
-    i = 0
-
-    while i < 1008:
-        os.system("date && ping -c4 -w10 192.168.1.1 |  tee -a /mnt/internal/mmcblk0p7/gwtest.txt")
-        os.system("date && ping -c4 -w10 8.8.8.8 |  tee -a /mnt/internal/mmcblk0p7/pingtest.txt")
-        os.system("date && ping -c4 -w10 google.com |  tee -a /mnt/internal/mmcblk0p7/dnstest.txt")
-
-        i += 1
-        time.sleep(60 * 2)
-    """
