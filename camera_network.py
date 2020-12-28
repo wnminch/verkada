@@ -22,7 +22,7 @@ if __name__ == "__main__":
     while True:
         status = os.system(network_status)
         # status is non-zero if camera is offline
-        if status == 0:
+        if status != 0:
             # all commands
             os.system('printf "\n\n-------------------------------------------------------------\n" >> ' + path)
             os.system("date" + append)
@@ -63,11 +63,11 @@ if __name__ == "__main__":
             os.system("curl --max-time 10 https://update.control.verkada.com/ping" + append)
             time.sleep(3)
             os.system('printf "\nVerbose curl of API endpoint\n"' + append)
-            os.system("curl --max-time 10 -vvv https://api.control.verkada.com/ping" + append)
+            os.system("curl --max-time 10 -vvv https://api.control.verkada.com/ping 1>> /mnt/ramdisk/network.txt 2>&1")
             time.sleep(15)
 
             # DNS
-            os.system('printf "\nResolv.conf file\n"' + append)
+            os.system('printf "\n\nResolv.conf file\n"' + append)
             os.system("grep nameserver /etc/resolv.conf" + append)
             os.system('printf "\nnslookup for api, relay, index, firmware, and update endpoints\n"' + append)
             os.system("nslookup api.control.verkada.com" + append)
