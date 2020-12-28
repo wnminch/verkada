@@ -5,6 +5,13 @@ import os
 
 
 if __name__ == "__main__":
+    """Upload on camera and run to collect outputs while the camera is offline,
+    usage curl -L https://raw.githubusercontent.com/wnminch/verkada/master/camera_network.py > /mnt/ramdisk/camera_network.py
+    python3 /mnt/ramdisk/camera_network.py >> /dev/null 2>&1 """
+
+    # Add script analysis of results, IE DNS failure
+    # Better location to store results, so they can persist across reloads
+
     network_status = "grep 0 /tmp/network_status"
     path = "/mnt/ramdisk/network.txt"
     append = " | tee -a " + path
@@ -15,7 +22,7 @@ if __name__ == "__main__":
     while True:
         status = os.system(network_status)
         # status is non-zero if camera is offline
-        if True: #status != 0:
+        if status != 0:
             # all commands
             os.system('printf "\n\n-------------------------------------------------------------\n" >> ' + path)
             os.system("date" + append)
@@ -43,15 +50,15 @@ if __name__ == "__main__":
             # curl tests
             os.system('printf "\nCurl api, relay, index, firmware, and update endpoints\n"' + append)
             os.system("curl --max-time 10 https://api.control.verkada.com/ping" + append)
-            time.sleep(15)
+            time.sleep(3)
             os.system("curl --max-time 10 https://relay.control.verkada.com/ping" + append)
-            time.sleep(15)
+            time.sleep(3)
             os.system("curl --max-time 10 https://index.control.verkada.com/ping" + append)
-            time.sleep(15)
+            time.sleep(3)
             os.system("curl --max-time 10 https://firmware.control.verkada.com/ping" + append)
-            time.sleep(15)
+            time.sleep(3)
             os.system("curl --max-time 10 https://update.control.verkada.com/ping" + append)
-            time.sleep(15)
+            time.sleep(3)
             os.system('printf "\nVerbose curl of API endpoint\n"' + append)
             os.system("curl --max-time 10 -vvv https://api.control.verkada.com/ping" + append)
             time.sleep(15)
