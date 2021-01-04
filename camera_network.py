@@ -6,8 +6,8 @@ import os
 
 if __name__ == "__main__":
     """Upload on camera and run to collect outputs while the camera is offline,
-    usage curl -L https://raw.githubusercontent.com/wnminch/verkada/master/camera_network.py > /mnt/ramdisk/camera_network.py
-    python3 /mnt/ramdisk/camera_network.py >> /dev/null 2>&1 """
+    usage: curl -L https://raw.githubusercontent.com/wnminch/verkada/master/camera_network.py > /mnt/ramdisk/camera_network.py
+    nohup python3 /mnt/ramdisk/camera_network.py >> /dev/null 2>&1 &"""
 
     # Add script analysis of results, IE DNS failure
     # Better location to store results, so they can persist across reloads
